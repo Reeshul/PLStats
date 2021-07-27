@@ -7,9 +7,7 @@ import Fixtures from "./containers/Fixtures";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Fixtures />
-      </div>
+      <Fixtures />
     </ThemeProvider>
   );
 }

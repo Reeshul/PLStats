@@ -71,7 +71,7 @@ const theme = createTheme({
       fontFamily: appFonts.Regular,
     },
     body2: {
-      fontFamily: appFonts.Regular,
+      fontFamily: appFonts.Bold,
     },
     button: {
       fontFamily: appFonts.Bold,

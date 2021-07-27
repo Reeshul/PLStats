@@ -1,6 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import { makeStyles, Grid } from "@material-ui/core";
 import WeekInfo from "./WeekInfo";
 import Fixture from "./Fixture";
 import FixtureDate from "./FixtureDate";
@@ -14,14 +13,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FixtureTable = () => {
+const FixtureTable = ({
+  incrementWeekNumber,
+  decrementWeekNumber,
+  weekNumber,
+}) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
       <Grid direction="column" container>
-        <FixtureTableHeader />
-        <WeekInfo />
+        <FixtureTableHeader
+          incrementWeekNumber={incrementWeekNumber}
+          weekNumber={weekNumber}
+          decrementWeekNumber={decrementWeekNumber}
+        />
+        <WeekInfo weekNumber={weekNumber} />
         <FixtureDate />
         <Fixture />
         <FixtureDate />
@@ -37,7 +44,7 @@ const FixtureTable = () => {
         <Fixture />
         <FixtureTableFooter />
       </Grid>
-    </div>
+    </Grid>
   );
 };
 

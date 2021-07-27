@@ -1,8 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-// import theme from "../theme";
-
+import { makeStyles, Grid, Typography } from "@material-ui/core";
 import ArsenalBadge from "../assets/badges/1.png";
 import BrentfordBadge from "../assets/badges/3.png";
 
@@ -22,31 +19,20 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
     flex: "1 1 calc(50% - 3.3rem)",
   },
-  homeTeamName: {
+  teamName: {
     fontSize: "1.7rem",
     verticalAlign: "middle",
   },
-  homeTeamBadgeWrapper: {
+  teamBadgeWrapper: {
     marginLeft: "0.6rem",
     marginRight: "0.6rem",
     display: "inline-block",
   },
-  homeTeamBadge: {
+  teamBadge: {
     display: "inline-block",
     verticalAlign: "middle",
-    opacity: 1,
-    transition: "opacity .35s ease-in-out, transform .2s",
   },
-  badge: {
-    textAlign: "center",
-    color: theme.palette.text.primary,
-    fontFamily: theme.typography.fontFamily,
-    borderBottom: `1px solid ${theme.palette.common.darkGray}`,
-    width: 30,
-    height: 30,
-    display: "flex",
-  },
-  koTime: {
+  kickOffTime: {
     padding: "0.8rem 1.6rem",
     fontSize: "1.3rem",
     flex: "1 0 6.6rem",
@@ -54,26 +40,10 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.common.lightGray}`,
     lineHeight: "1.1",
     textAlign: "center",
-    fontFamily: theme.ty,
   },
   awayTeamInfo: {
     textAlign: "left",
     flex: "1 1 calc(50% - 3.3rem)",
-  },
-  awayTeamName: {
-    fontSize: "1.7rem",
-    verticalAlign: "middle",
-  },
-  awayTeamBadgeWrapper: {
-    marginLeft: "0.6rem",
-    marginRight: "0.6rem",
-    display: "inline-block",
-  },
-  awayTeamBadge: {
-    display: "inline-block",
-    verticalAlign: "middle",
-    opacity: 1,
-    transition: "opacity .35s ease-in-out, transform .2s",
   },
 }));
 
@@ -81,39 +51,43 @@ const Fixture = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Grid className={classes.root}>
       <Grid container className={classes.fixtureInfo}>
         <Grid item xs={5} className={classes.homeTeamInfo}>
-          <span className={classes.homeTeamName}>Brentford</span>
-          <div className={classes.homeTeamBadgeWrapper}>
+          <Typography variant="body2" className={classes.teamName}>
+            Brentford
+          </Typography>
+          <Grid className={classes.teamBadgeWrapper}>
             <img
-              className={classes.homeTeamBadge}
+              className={classes.teamBadge}
               src={BrentfordBadge}
               alt="Brentford"
               width={30}
               height={30}
             />
-          </div>
+          </Grid>
         </Grid>
         <Grid item xs={2}>
-          <Typography variant="subtitle2" className={classes.koTime}>
+          <Typography variant="subtitle2" className={classes.kickOffTime}>
             20:00
           </Typography>
         </Grid>
         <Grid item xs={5} className={classes.awayTeamInfo}>
-          <div className={classes.awayTeamBadgeWrapper}>
+          <Grid className={classes.teamBadgeWrapper}>
             <img
-              className={classes.awayTeamBadge}
+              className={classes.teamBadge}
               src={ArsenalBadge}
               alt="Arsenal"
               width={30}
               height={30}
             />
-          </div>
-          <span className={classes.awayTeamName}>Arsenal</span>
+          </Grid>
+          <Typography variant="body2" className={classes.teamName}>
+            Arsenal
+          </Typography>
         </Grid>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 
