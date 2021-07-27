@@ -1,14 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import logo from "./logo.svg";
 import "./App.css";
-import FixturesTable from "./components/FixturesTable";
+import theme from "./theme";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Fixtures from "./containers/Fixtures";
 
 function App() {
   return (
-    <div className="App">
-      <FixturesTable />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Fixtures />
+      </div>
+    </ThemeProvider>
   );
 }
 
