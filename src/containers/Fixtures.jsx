@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import FixtureTable from "../components/FixturesTable";
 import { makeStyles, Grid } from "@material-ui/core";
 import { proxy } from "../app.config";
-import {
-  clubIds,
-  sortFixturesByEvent,
-  sortFixturesByDate,
-  kickOffTimeToDate,
-  kickOffTimeToTime,
-} from "../helpers/fixtureHelpers";
+import { sortFixturesByEvent } from "../helpers/fixtureHelpers";
 
 const url = "https://fantasy.premierleague.com/api/fixtures";
 
@@ -42,12 +36,16 @@ const Fixtures = () => {
   // ***
 
   // State variables
-  const [weekNumber, setWeekNumber] = useState(0);
+  const [weekNumber, setWeekNumber] = useState(1);
   const [fixtures, setFixtures] = useState([]);
 
   // onClick handlers
-  const incrementWeekNumber = () => setWeekNumber(weekNumber + 1);
-  const decrementWeekNumber = () => setWeekNumber(weekNumber - 1);
+  const incrementWeekNumber = () => {
+    if (weekNumber < 38) setWeekNumber(weekNumber + 1);
+  };
+  const decrementWeekNumber = () => {
+    if (weekNumber > 1) setWeekNumber(weekNumber - 1);
+  };
 
   // Fetch data from endpoint
   useEffect(() => {
@@ -90,6 +88,7 @@ const Fixtures = () => {
         incrementWeekNumber={incrementWeekNumber}
         weekNumber={weekNumber}
         decrementWeekNumber={decrementWeekNumber}
+        fixtures={fixtures}
       />
     </Grid>
   );

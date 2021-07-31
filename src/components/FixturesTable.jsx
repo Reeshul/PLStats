@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { makeStyles, Grid } from "@material-ui/core";
 import WeekInfo from "./WeekInfo";
 import Fixture from "./Fixture";
 import FixtureDate from "./FixtureDate";
 import FixtureTableHeader from "./FixtureTableHeader";
-import FixtureTableFooter from "./FixtureTableFooter";
+import { sortFixturesByDate } from "../helpers/fixtureHelpers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,34 +17,32 @@ const FixtureTable = ({
   incrementWeekNumber,
   decrementWeekNumber,
   weekNumber,
+  fixtures,
 }) => {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.root}>
-      <Grid direction="column" container>
-        <FixtureTableHeader
-          incrementWeekNumber={incrementWeekNumber}
-          weekNumber={weekNumber}
-          decrementWeekNumber={decrementWeekNumber}
-        />
-        <WeekInfo weekNumber={weekNumber} />
-        <FixtureDate />
-        <Fixture />
-        <FixtureDate />
-        <Fixture />
-        <Fixture />
-        <Fixture />
-        <Fixture />
-        <Fixture />
-        <Fixture />
-        <Fixture />
-        <FixtureDate />
-        <Fixture />
-        <Fixture />
-        <FixtureTableFooter />
+    <Fragment>
+      <Grid className={classes.root}>
+        <Grid direction="column" container>
+          <FixtureTableHeader
+            incrementWeekNumber={incrementWeekNumber}
+            decrementWeekNumber={decrementWeekNumber}
+          />
+          <WeekInfo weekNumber={weekNumber} />
+          {Object.entries(sortFixturesByDate(fixtures).fixtureDay).map(
+            (day) => (
+              <Fragment key={day[0]}>
+                <FixtureDate date={day[0]} />
+                {day[1].map((fixture) => (
+                  <Fixture fixture={fixture} key={fixture.id} />
+                ))}
+              </Fragment>
+            )
+          )}
+        </Grid>
       </Grid>
-    </Grid>
+    </Fragment>
   );
 };
 

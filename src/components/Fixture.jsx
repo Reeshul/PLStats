@@ -1,7 +1,11 @@
 import React from "react";
 import { makeStyles, Grid, Typography } from "@material-ui/core";
-import ArsenalBadge from "../assets/badges/1.png";
-import BrentfordBadge from "../assets/badges/3.png";
+
+import {
+  kickOffTimeToTime,
+  teamIds,
+  teamBadges,
+} from "../helpers/fixtureHelpers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     verticalAlign: "middle",
   },
+  kickOffTimeWrapper: {
+    margin: "0 auto",
+  },
   kickOffTime: {
     padding: "0.8rem 1.6rem",
     fontSize: "1.3rem",
@@ -47,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Fixture = () => {
+const Fixture = ({ fixture }) => {
   const classes = useStyles();
 
   return (
@@ -55,35 +62,35 @@ const Fixture = () => {
       <Grid container className={classes.fixtureInfo}>
         <Grid item xs={5} className={classes.homeTeamInfo}>
           <Typography variant="body2" className={classes.teamName}>
-            Brentford
+            {teamIds[fixture.team_h].toString()}
           </Typography>
           <Grid className={classes.teamBadgeWrapper}>
             <img
               className={classes.teamBadge}
-              src={BrentfordBadge}
-              alt="Brentford"
+              src={teamBadges[fixture.team_h]}
+              alt={teamIds[fixture.team_h]}
               width={30}
               height={30}
             />
           </Grid>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item className={classes.kickOffTimeWrapper}>
           <Typography variant="subtitle2" className={classes.kickOffTime}>
-            20:00
+            {kickOffTimeToTime(fixture.kickoff_time)}
           </Typography>
         </Grid>
         <Grid item xs={5} className={classes.awayTeamInfo}>
           <Grid className={classes.teamBadgeWrapper}>
             <img
               className={classes.teamBadge}
-              src={ArsenalBadge}
-              alt="Arsenal"
+              src={teamBadges[fixture.team_a]}
+              alt={teamIds[fixture.team_a]}
               width={30}
               height={30}
             />
           </Grid>
           <Typography variant="body2" className={classes.teamName}>
-            Arsenal
+            {teamIds[fixture.team_a].toString()}
           </Typography>
         </Grid>
       </Grid>

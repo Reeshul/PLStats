@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FixtureDate = () => {
+const FixtureDate = ({ date }) => {
   const classes = useStyles();
   return (
     <Grid container>
       <Grid item xs className={classes.dayAndDate}>
-        <Typography variant="overline">Friday 13 August 2021</Typography>
+        <Typography variant="overline">{date}</Typography>
       </Grid>
     </Grid>
   );
