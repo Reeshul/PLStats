@@ -3,7 +3,7 @@ import { makeStyles, Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   dayAndDate: {
-    backgroundColor: theme.palette.common.darkGray,
+    backgroundColor: theme.palette.common.lightPurple,
     margin: 0,
     padding: "0.5rem 1rem",
     fontSize: "1.3rem",
@@ -16,7 +16,9 @@ const FixtureDate = ({ date }) => {
   return (
     <Grid container>
       <Grid item xs className={classes.dayAndDate}>
-        <Typography variant="overline">{date}</Typography>
+        <Typography variant="overline" color="textSecondary">
+          {date}
+        </Typography>
       </Grid>
     </Grid>
   );

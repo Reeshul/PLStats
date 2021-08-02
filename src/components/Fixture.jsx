@@ -10,11 +10,11 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    borderBottom: `1px solid ${theme.palette.common.darkGray}`,
+    borderBottom: `1px solid ${theme.palette.common.lightPurple}`,
     position: "relative",
   },
   fixtureInfo: {
-    margin: "0.7rem 0 -1.2rem 0",
+    margin: "1rem 0 -1.2rem 0",
     alignItems: "center",
     color: theme.palette.text.primary,
     display: "flex",
@@ -40,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
   },
   kickOffTime: {
-    padding: "0.8rem 1.6rem",
-    fontSize: "1.3rem",
+    padding: "0.4rem 0.8rem",
+    fontSize: "1.7rem",
     flex: "1 0 6.6rem",
     display: "inline-block",
-    border: `1px solid ${theme.palette.common.lightGray}`,
+    border: `1px solid ${theme.palette.common.lightPurple}`,
     lineHeight: "1.1",
     textAlign: "center",
   },

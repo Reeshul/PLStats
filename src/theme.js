@@ -2,11 +2,12 @@ import { createTheme } from "@material-ui/core/styles";
 
 // colors
 const appColors = {
-  purple: "#37003C",
+  lightPurple: "#360D3A",
+  darkPurple: "#37003C",
   lightBlue: "#61DAFB",
   darkBlue: "#282C34",
   black: "#2F2F2F",
-  white: "#FFFFF",
+  white: "#FFFFFF",
   lightGray: "#E5E5E5",
   darkGray: "#EFEFEF",
 };
@@ -22,7 +23,8 @@ const theme = createTheme({
   // check default theme here https://material-ui.com/customization/default-theme/#default-theme;
   palette: {
     common: {
-      purple: appColors.purple,
+      lightPurple: appColors.lightPurple,
+      darkPurple: appColors.darkPurple,
       lightBlue: appColors.lightBlue,
       darkBlue: appColors.darkBlue,
       black: appColors.black,
@@ -34,7 +36,7 @@ const theme = createTheme({
       main: appColors.lightBlue,
     },
     secondary: {
-      main: appColors.darkGray,
+      main: appColors.lightPurple,
     },
     text: {
       primary: appColors.black,

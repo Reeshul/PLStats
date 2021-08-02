@@ -4,7 +4,6 @@ import { makeStyles, Grid, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   weekInfo: {
     padding: theme.spacing(2),
-    borderBottom: `1px solid ${theme.palette.common.darkGray}`,
   },
 }));
 

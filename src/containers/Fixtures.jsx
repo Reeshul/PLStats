@@ -11,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: "relative",
     margin: `${theme.spacing(3)}px ${theme.spacing(1)}px`,
+    backgroundColor: theme.palette.common.lightBlue,
+    padding: `${theme.spacing(3)}px ${theme.spacing(1)}px`,
   },
 }));
 
@@ -38,12 +40,15 @@ const Fixtures = () => {
   // State variables
   const [weekNumber, setWeekNumber] = useState(1);
   const [fixtures, setFixtures] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // onClick handlers
   const incrementWeekNumber = () => {
+    setIsLoaded(false);
     if (weekNumber < 38) setWeekNumber(weekNumber + 1);
   };
   const decrementWeekNumber = () => {
+    setIsLoaded(false);
     if (weekNumber > 1) setWeekNumber(weekNumber - 1);
   };
 
@@ -53,6 +58,7 @@ const Fixtures = () => {
       let response = await fetch(proxy + url).catch(handleError);
       response = await response.json();
       if (response.code && response.code === 400) return;
+      setIsLoaded(true);
       setFixtures(sortFixturesByEvent(response).fixtureWeek[weekNumber]);
     }
     fetchFixtures();
@@ -80,8 +86,6 @@ const Fixtures = () => {
   //     );
   // }, []);
 
-  // console.log(fixtures)
-
   return (
     <Grid className={classes.root}>
       <FixtureTable
@@ -89,6 +93,7 @@ const Fixtures = () => {
         weekNumber={weekNumber}
         decrementWeekNumber={decrementWeekNumber}
         fixtures={fixtures}
+        isLoaded={isLoaded}
       />
     </Grid>
   );

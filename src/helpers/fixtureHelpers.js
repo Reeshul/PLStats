@@ -84,21 +84,33 @@ export const sortFixturesByDate = function (fixturesByEvent) {
   };
   fixturesByEvent.forEach((fixture) => {
     const { kickoff_time } = fixture;
-    if (!fixturesByDate.fixtureDay[kickOffTimeToStringDate(kickoff_time)])
-      fixturesByDate.fixtureDay[kickOffTimeToStringDate(kickoff_time)] = [];
-    fixturesByDate.fixtureDay[kickOffTimeToStringDate(kickoff_time)].push(
+    if (!fixturesByDate.fixtureDay[kickOffTimeToLongDate(kickoff_time)])
+      fixturesByDate.fixtureDay[kickOffTimeToLongDate(kickoff_time)] = [];
+    fixturesByDate.fixtureDay[kickOffTimeToLongDate(kickoff_time)].push(
       fixture
     );
   });
   return fixturesByDate;
 };
 
-export const kickOffTimeToStringDate = function (kickOffTime) {
+export const kickOffTimeToLongDate = function (kickOffTime) {
   const dateObject = new Date(kickOffTime);
   const options = {
     weekday: "long",
     year: "numeric",
     month: "long",
+    day: "numeric",
+  };
+  const dateString = dateObject.toLocaleDateString("en-GB", options);
+  // Remove comma after day
+  return dateString.replace(/,/g, "");
+};
+
+export const kickOffTimeToShortDate = function (kickOffTime) {
+  const dateObject = new Date(kickOffTime);
+  const options = {
+    weekday: "short",
+    month: "short",
     day: "numeric",
   };
   const dateString = dateObject.toLocaleDateString("en-GB", options);
